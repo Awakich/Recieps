@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 import Ingredient from "../ingredients/Ingredient";
 
 const Ingredients = ({ recieps, category }) => {
@@ -8,14 +9,14 @@ const Ingredients = ({ recieps, category }) => {
       <hr className="border-[1px] border-black" />
       <div className="grid grid-cols-6 gap-5">
         {recieps.map(({ idMeal, strMealThumb, strMeal }) => (
-          <div key={idMeal} className="border-black mt-5">
+          <Link to={`/${idMeal}`} key={idMeal} className="border-black mt-5">
             <Ingredient
               key={idMeal}
               id={idMeal}
               image={strMealThumb}
               title={strMeal}
             />
-          </div>
+          </Link>
         ))}
       </div>
       <hr className="border-[1px] border-black mt-5" />

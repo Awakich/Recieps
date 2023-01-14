@@ -1,8 +1,7 @@
-import Header from "../src/components/Header";
-import Footer from "../src/components/Footer";
-import Ingredients from "../src/components/ingredients/Ingredients";
-import SearchField from "../src/components/SearchField";
 import { useEffect, useState, memo } from "react";
+import { Routes, Route } from "react-router-dom";
+import IngredientInfo from "./components/ingredients/IngredientInfo";
+import Landing from "./components/Landing";
 
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -19,28 +18,29 @@ function App() {
       ).then((res) => res.json());
 
       setRecieps(res.meals);
-      console.log(res.meals);
     };
     getData();
   }, [userInput]);
 
-  if (!recieps) {
-    setRecieps([]);
-  }
+  if (!recieps) setRecieps([]);
 
-  if (!userInput) {
-    setUserInput("Choose Category");
-  }
+  if (!userInput) setUserInput("Choose Category");
 
   return (
     <div>
-      <Header />
-      <SearchField onChanging={changeValue} />
-      <Ingredients
-        recieps={recieps}
-        category={userInput && userInput[0].toUpperCase() + userInput.slice(1)}
-      />
-      <Footer />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Landing
+              changeValue={changeValue}
+              recieps={recieps}
+              userInput={userInput}
+            />
+          }
+        />
+        <Route path="/:id" element={<IngredientInfo />} />
+      </Routes>
     </div>
   );
 }
