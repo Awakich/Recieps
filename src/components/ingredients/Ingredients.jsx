@@ -5,9 +5,9 @@ import Ingredient from "../ingredients/Ingredient";
 const Ingredients = ({ recieps, category }) => {
   return (
     <div>
-      <h2 className="my-5 font-bold text-8xl">{category}</h2>
+      <h2 className="my-5 font-bold text-6xl md:8xl">{category}</h2>
       <hr className="border-[1px] border-black" />
-      <div className="grid grid-cols-6 gap-5">
+      <div className="grid xl:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-5">
         {recieps.map(({ idMeal, strMealThumb, strMeal }) => (
           <Link to={`/${idMeal}`} key={idMeal} className="border-black mt-5">
             <Ingredient

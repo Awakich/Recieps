@@ -39,7 +39,7 @@ function App() {
             />
           }
         />
-        <Route path="/:id" element={<IngredientInfo />} />
+        <Route path="/:id" element={<IngredientInfo recieps={recieps} />} />
       </Routes>
     </div>
   );
